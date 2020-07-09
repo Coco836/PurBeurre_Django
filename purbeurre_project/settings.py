@@ -34,7 +34,7 @@ else:
 
 ALLOWED_HOSTS = [
                 '127.0.0.1', 'localhost', '.herokuapps.com', 
-                'ec2-18-220-188-171.us-east-2.compute.amazonaws.com:8000'
+                'ec2-18-220-188-171.us-east-2.compute.amazonaws.com'
                 ]
 
 
