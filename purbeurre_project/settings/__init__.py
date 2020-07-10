@@ -26,10 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'l%%!f=+4f9lue2y8+ooq@0o540vp@o9h(t*@(b24i4y4^o@0lg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.environ.get('ENV', "DEVELOPMENT") == 'PRODUCTION':
-    DEBUG = False
-else:
-    DEBUG = True
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.herokuapps.com']
@@ -83,7 +80,6 @@ WSGI_APPLICATION = 'purbeurre_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -94,7 +90,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
@@ -145,14 +140,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-if os.environ.get('ENV', "DEVELOPMENT") == 'PRODUCTION':
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    # Activate Django-Heroku.
-    django_heroku.settings(locals())
-
-
 INTERNAL_IPS = ['127.0.0.1']
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 
