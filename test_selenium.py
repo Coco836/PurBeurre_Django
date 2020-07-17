@@ -52,6 +52,7 @@ class MySeleniumTests(StaticLiveServerTestCase):
         super().tearDownClass()
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     def test_1_signup_and_login(self):
         self.selenium.get('%s%s' % (self.live_server_url, reverse('sign_up')))
         self.selenium.find_element_by_name("username").send_keys('Test')
@@ -72,6 +73,8 @@ class MySeleniumTests(StaticLiveServerTestCase):
                                             ).click()
         self.selenium.find_elements_by_class_name("aliment")[0].click()
 =======
+=======
+>>>>>>> parent of 685ea7c... modify travis
     # def test_1_signup_and_login(self):
     #     self.selenium.get('%s%s' % (self.live_server_url, reverse('sign_up')))
     #     self.selenium.find_element_by_name("username").send_keys('Test')
@@ -91,6 +94,9 @@ class MySeleniumTests(StaticLiveServerTestCase):
     #                                         '//input[@value="Se connecter"]'
     #                                         ).click()
     #     self.selenium.find_elements_by_class_name("aliment")[0].click()
+<<<<<<< HEAD
+>>>>>>> parent of 685ea7c... modify travis
+=======
 >>>>>>> parent of 685ea7c... modify travis
 
     def test_2_search(self):
