@@ -53,9 +53,6 @@ class MySeleniumTests(StaticLiveServerTestCase):
 
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 4910e73... back to old commit
     def test_1_signup_and_login(self):
         self.selenium.get('%s%s' % (self.live_server_url, reverse('sign_up')))
         self.selenium.find_element_by_name("username").send_keys('Test')
@@ -74,7 +71,6 @@ class MySeleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_xpath(
                                             '//input[@value="Se connecter"]'
                                             ).click()
-<<<<<<< HEAD
         self.selenium.find_elements_by_class_name("aliment")[0].click()
 =======
 =======
@@ -102,12 +98,6 @@ class MySeleniumTests(StaticLiveServerTestCase):
 >>>>>>> parent of 685ea7c... modify travis
 =======
 >>>>>>> parent of 685ea7c... modify travis
-=======
-        self.selenium.get('%s%s' % (
-                                    self.live_server_url,
-                                    reverse('saved_food')
-                                    ))
->>>>>>> parent of 4910e73... back to old commit
 
     def test_2_search(self):
         Product.objects.create(**self.data_product)
