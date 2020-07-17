@@ -90,7 +90,7 @@ DATABASES = {
         'NAME': 'django_purbeurre',
         'USER': 'colette',
         'PASSWORD': 'dpbpass',
-        'HOST': '',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -155,4 +155,5 @@ if os.environ.get('ENV', "DEVELOPMENT") == 'PRODUCTION':
 INTERNAL_IPS = ['127.0.0.1']
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 
