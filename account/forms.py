@@ -1,17 +1,18 @@
 # Import
 from django import forms
-from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+import re
 
 
 class UserForm(forms.Form):
-    ''' Form sign-up for new user. '''
+    """ Form sign-up for new user. """
 
     def email_is_unique(email):
-        '''
+        """
             Method that raises error if the email
             entered by the user already exists.
-        '''
+        """
         try:
             User.objects.get(email=email)
         except User.DoesNotExist:
@@ -20,16 +21,29 @@ class UserForm(forms.Form):
             raise ValidationError('Cette adresse email existe déjà !')
 
     def username_is_unique(username):
-        '''
+        """
             Method that raises error if the username
             entered by the user already exists.
-         '''
+         """
         try:
             User.objects.get(username=username)
         except User.DoesNotExist:
             pass
         else:
             raise ValidationError(" Ce nom d'utilisateur existe déjà !")
+
+    def password_validator(password):
+        min_length = 8
+        if len(password) < min_length or \
+            not re.findall('\d', password) or \
+            not re.findall('[A-Z]', password) \
+            or not re.findall('[a-z]', password):
+            raise ValidationError(
+                "Le mot de passe doit contenir au minimum : "
+                "8 caractères, un chiffre (0-9), "
+                "une lettre MAJUSCULE et minuscule !"
+            )
+
 
     # Creation of the different fields for User table
     username = forms.CharField(
@@ -100,6 +114,7 @@ class UserForm(forms.Form):
                                             'placeholder': 'Mot de passe'
                                         }
             ),
-            required=True
+        validators=[password_validator],
+        required=True
 
     )

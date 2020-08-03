@@ -431,3 +431,6 @@ p#acc-style span {
     color: #345A61;
 }
 
+span.error-input ul {
+    margin-right: 3rem
+}
