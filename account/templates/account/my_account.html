@@ -23,8 +23,10 @@
                 <span>Mail:</span> {{ user.email }} <br><br>
                 <a class="aliment" href="{% url 'saved_food' %}">
                     <span>Accéder à vos favoris !</span>
+                </a><br>
+                <a class="change-pwd" href="{% url 'change_password' %}">
+                   <span>Changer le mot de passe</span>
                 </a>
-
             </p>
         </div>
     </div>
