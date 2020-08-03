@@ -27,11 +27,11 @@ class TestViews(TestCase):
                      'last_name': 'Sacquet',
                      'first_name': 'Frodon',
                      'email': 'frodon@sacquet.fr',
-                     'password': 'test',
+                     'password': 'TestPassword1',
         }
         self.login_data = {
             'username': 'fred',
-            'password': 'test'
+            'password': 'TestPassword1'
         }
         self.data_product = {
             'name': 'nutella',

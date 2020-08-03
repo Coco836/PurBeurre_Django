@@ -20,7 +20,7 @@ class TestModels(TestCase):
                     'last_name': 'Sacquet',
                     'first_name': 'Frodon',
                     'email': 'frodon@sacquet.fr',
-                    'password': 'test',
+                    'password': 'TestPassword1',
         }
 
     def test_user_fields(self):

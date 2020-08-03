@@ -28,17 +28,6 @@ class MySeleniumTests(StaticLiveServerTestCase):
         self.data_category = {
             'name': 'pâte à tartiner'
         }
-        self.user_data = {
-                'username': 'fred',
-                'last_name': 'Sacquet',
-                'first_name': 'Frodon',
-                'email': 'frodon@sacquet.fr',
-                'password': 'test',
-        }
-        self.login_data = {
-            'username': 'fred',
-            'password': 'test'
-        }
 
     @classmethod
     def setUpClass(cls):
@@ -59,13 +48,13 @@ class MySeleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_name("email").send_keys(
                                                         'emailtest@email.fr'
                                                         )
-        self.selenium.find_element_by_name("password").send_keys('pass')
+        self.selenium.find_element_by_name("password").send_keys('Password1')
         self.selenium.find_element_by_xpath(
                                             '''//input[@value="S'inscrire"]'''
                                             ).click()
         self.selenium.find_element_by_class_name("connection-link").click()
         self.selenium.find_element_by_name("username").send_keys('Test')
-        self.selenium.find_element_by_name("password").send_keys('pass')
+        self.selenium.find_element_by_name("password").send_keys('Password1')
         self.selenium.find_element_by_xpath(
                                             '//input[@value="Se connecter"]'
                                             ).click()
@@ -89,13 +78,13 @@ class MySeleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_name("email").send_keys(
                                                         'emailtest@email.fr'
                                                         )
-        self.selenium.find_element_by_name("password").send_keys('pass')
+        self.selenium.find_element_by_name("password").send_keys('Password1')
         self.selenium.find_element_by_xpath(
                                             '''//input[@value="S'inscrire"]'''
                                         ).click()
         self.selenium.find_element_by_class_name("connection-link").click()
         self.selenium.find_element_by_name("username").send_keys('Test')
-        self.selenium.find_element_by_name("password").send_keys('pass')
+        self.selenium.find_element_by_name("password").send_keys('Password1')
         self.selenium.find_element_by_xpath(
                                             '//input[@value="Se connecter"]'
                                             ).click()
