@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 
 
 class Category(models.Model):
+    class Meta:
+        app_label  = 'store'
+
     ''' Create model for Categories. '''
     name = models.CharField(
                             "category's name",
@@ -24,6 +27,9 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    class Meta:
+        app_label  = 'store'
+
     ''' Create model for Products. '''
     name = models.CharField(
                             "product's name",
@@ -56,6 +62,9 @@ class Product(models.Model):
 
 
 class Shop(models.Model):
+    class Meta:
+        app_label  = 'store'
+
     ''' Create model for Stores. '''
     name = models.CharField("shop's name", max_length=200, null=False)
     # Create many to many field to link product to shops where it can be found
