@@ -434,3 +434,8 @@ p#acc-style span {
 span.error-input ul {
     margin-right: 3rem
 }
+
+p.pass-input {
+    margin-right: 3rem;
+    color: #000000;
+}

@@ -22,6 +22,7 @@ class TestViews(TestCase):
         self.sign_up_url = reverse('sign_up')
         self.login_url = reverse('login')
         self.favorite_url = reverse('saved_food')
+        self.change_pwd_url = reverse('change_password')
         self.data = {
                      'username': 'fred',
                      'last_name': 'Sacquet',
@@ -39,6 +40,11 @@ class TestViews(TestCase):
             'url': 'https://url',
             'nutrition_grade': 'd',
             'image': 'https://image',
+        }
+        self.data_pwd_change = {
+            'old_password': 'TestPassword1',
+            'new_password1': 'MyNewPassword1234',
+            'new_password2': 'MyNewPassword1234'
         }
 
     def test_sign_up_get(self):
@@ -124,14 +130,14 @@ class TestViews(TestCase):
                             password=self.login_data['password']
         )
         # Check if the user n°6 is currently logged in
-        self.assertEqual('6', self.client.session.get('_auth_user_id'))
+        self.assertEqual('7', self.client.session.get('_auth_user_id'))
         response = self.client.get('/account/logout/?next=/')
         self.assertEqual(response.status_code, 302)
         # Check if the user n°6 is currently logged out
-        self.assertNotEqual('6', self.client.session.get('_auth_user_id'))
+        self.assertNotEqual('7', self.client.session.get('_auth_user_id'))
 
     def test_saved_food(self):
-        ''' Test if the products saved as favorite exist in database. '''
+        """ Test if the products saved as favorite exist in database. """
         User.objects.create_user(**self.data)
         self.client.login(
                                     username=self.login_data['username'],
@@ -143,3 +149,16 @@ class TestViews(TestCase):
         response = self.client.get(reverse('saved_food'))
         self.assertEqual(User.products.through.objects.all().count(), 1)
         self.assertTemplateUsed(response, 'account/saved_food.html')
+
+    def test_change_password(self):
+        """ Test if password was correctly changed. """
+        User.objects.create_user(**self.data)
+        self.client.login(
+                            username=self.login_data['username'],
+                            password=self.login_data['password']
+        )
+        self.client.get(self.change_pwd_url)
+        response = self.client.post(self.change_pwd_url, self.data_pwd_change)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/change_password.html')
+        self.assertContains(response, 'Votre mot de passe a bien été changé')

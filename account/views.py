@@ -97,13 +97,13 @@ def change_password(request):
             context = {
                 'success': success
             }
-            return render(request, 'account/change_password.html', context)
+            return render(request, 'registration/change_password.html', context)
     else:
         form = PasswordChangeForm(request.user)
     context = {
         'form': form,
     }
-    return render(request, 'account/change_password.html', context)
+    return render(request, 'registration/change_password.html', context)
 
 @login_required
 def my_account(request):

@@ -35,13 +35,11 @@ class UserForm(forms.Form):
     def password_validator(password):
         min_length = 8
         if len(password) < min_length or \
-            not re.findall('\d', password) or \
             not re.findall('[A-Z]', password) \
-            or not re.findall('[a-z]', password):
+            and not re.findall('[a-z]', password):
             raise ValidationError(
                 "Le mot de passe doit contenir au minimum : "
-                "8 caractères, un chiffre (0-9), "
-                "une lettre MAJUSCULE et minuscule !"
+                "8 caractères et ne peut contenir uniquement des chiffres !"
             )
 
 
