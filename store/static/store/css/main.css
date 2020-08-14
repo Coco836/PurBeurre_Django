@@ -455,7 +455,7 @@ nav.page {
 }
 
 button.save-button {
-  background-color: #e8a75da6;
+  background-color: #abdc3596;
   color: black;
   border: 2px solid #f8f8f8;
 }
@@ -656,4 +656,10 @@ nav#mainNav.navbar.navbar-expand-lg.navbar-light.fixed-top.py-3 {
 
 .ui-autocomplete::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.2);
+}
+
+button.delete-button {
+  background-color: #5daee8a6;
+  color: black;
+  border: 2px solid #f8f8f8;
 }
