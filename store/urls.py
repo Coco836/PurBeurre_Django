@@ -29,5 +29,6 @@ urlpatterns = [
         views.delete_substitute,
         name='favorite_delete'
     ),
-    path(r'mention/', views.mention, name='mention')
+    path(r'mention/', views.mention, name='mention'),
+    path(r'autocomplete/', views.autocomplete, name='autocomplete')
 ]

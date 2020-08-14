@@ -1,5 +1,5 @@
 # Import
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.template import loader
 from .models import Category, Product
@@ -116,3 +116,13 @@ def delete_substitute(request, substitute_id):
 def mention(request):
     ''' View that render template. '''
     return render(request, 'store/mention.html')
+
+def autocomplete(request):
+    """ """
+    if 'term' in request.GET:
+        query_set = Product.objects.filter(name__istartswith=request.GET.get('term'))
+        names = list()
+        for product in query_set:
+            names.append(product.name)
+        return JsonResponse(names, safe=False)
+    return render(request, 'store/index.html', {'names' : names})

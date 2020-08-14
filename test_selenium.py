@@ -107,3 +107,36 @@ class MySeleniumTests(StaticLiveServerTestCase):
                                     self.live_server_url,
                                     reverse('saved_food')
                                     ))
+
+    def test_4_change_password(self):
+        self.selenium.get('%s%s' % (self.live_server_url, reverse('sign_up')))
+        self.selenium.find_element_by_name("username").send_keys('Test')
+        self.selenium.find_element_by_name("last_name").send_keys('testname')
+        self.selenium.find_element_by_name("first_name").send_keys('test')
+        self.selenium.find_element_by_name("email").send_keys(
+                                                        'emailtest@email.fr'
+                                                        )
+        self.selenium.find_element_by_name("password").send_keys('Password1')
+        self.selenium.find_element_by_xpath(
+                                            '''//input[@value="S'inscrire"]'''
+                                            ).click()
+        self.selenium.find_element_by_class_name("connection-link").click()
+        self.selenium.find_element_by_name("username").send_keys('Test')
+        self.selenium.find_element_by_name("password").send_keys('Password1')
+        self.selenium.find_element_by_xpath(
+                                            '//input[@value="Se connecter"]'
+                                            ).click()
+        self.selenium.find_element_by_class_name("change-pwd").click()
+        self.selenium.find_element_by_name(
+                                            "old_password"
+                                            ).send_keys('Password1')
+        self.selenium.find_element_by_name(
+                                            "new_password1"
+                                            ).send_keys('Password234')
+        self.selenium.find_element_by_name(
+                                            "new_password2"
+                                            ).send_keys('Password234')
+        self.selenium.find_element_by_xpath(
+                                            '''//input[@value="Changer '''
+                                            '''mon mot de passe"]'''
+                                            ).click()
