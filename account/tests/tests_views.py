@@ -9,13 +9,13 @@ from django.contrib.auth.models import User
 
 
 class TestViews(TestCase):
-    ''' Class test for the views of the application 'account' '''
+    """ Class test for the views of the application 'account' """
 
     def setUp(self):
-        '''
+        """
             Create test records once to access them in
             every test method in the test class.
-        '''
+        """
         self.client = Client()
         self.home_url = reverse('home')
         self.account_url = reverse('my_account')
@@ -48,7 +48,7 @@ class TestViews(TestCase):
         }
 
     def test_sign_up_get(self):
-        ''' Test that sign-up form appears in template. '''
+        """ Test that sign-up form appears in template. """
         response = self.client.get(self.sign_up_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'registration/sign_up.html')
@@ -60,7 +60,7 @@ class TestViews(TestCase):
         )
 
     def test_sign_up_post_success(self):
-        ''' Test that sign-up form was successfully filled by user. '''
+        """ Test that sign-up form was successfully filled by user. """
         response = self.client.post(self.sign_up_url, self.data)
         self.assertTemplateUsed(response, 'account/valid_sign_up.html')
         self.assertEqual(User.objects.count(), 1)
@@ -69,7 +69,7 @@ class TestViews(TestCase):
             self.assertEqual(user.username, 'fred')
 
     def test_login_get(self):
-        ''' Test that login form appears clearly in template. '''
+        """ Test that login form appears clearly in template. """
         response = self.client.get(self.login_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'registration/login.html')
@@ -81,7 +81,7 @@ class TestViews(TestCase):
         )
 
     def test_login_success(self):
-        ''' Test that login form was successfully filled by user. '''
+        """ Test that login form was successfully filled by user. """
         User.objects.create_user(**self.data)
         response = self.client.post(self.login_url, self.login_data)
         self.assertTemplateUsed(response, 'account/my_account.html')
@@ -89,10 +89,10 @@ class TestViews(TestCase):
         self.assertContains(response, '''<a class="deconnection" ''')
 
     def test_my_account(self):
-        '''
+        """
             Test that template 'my_account' appears
             when the user has successfully logged in.
-        '''
+        """
         User.objects.create_user(**self.data)
         self.client.post(self.login_url, self.login_data)
         response = self.client.get(self.account_url)
@@ -102,7 +102,7 @@ class TestViews(TestCase):
         self.assertContains(response, '''<a class="deconnection" ''')
 
     def test_login_fail(self):
-        ''' Test that user stay in the same template when login failed. '''
+        """ Test that user stay in the same template when login failed. """
         User.objects.create_user(**self.data)
         response = self.client.post(
                                     self.login_url,
@@ -123,7 +123,7 @@ class TestViews(TestCase):
             )
 
     def test_logout_view(self):
-        ''' Test that client session is clear when the user logout. '''
+        """ Test that client session is clear when the user logout. """
         User.objects.create_user(**self.data)
         self.client.login(
                             username=self.login_data['username'],

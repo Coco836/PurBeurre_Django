@@ -10,17 +10,18 @@ from django.contrib.auth.models import User
 
 
 class TestViews(TestCase):
-    ''' Class test for the views of the application 'store' '''
+    """ Class test for the views of the application 'store' """
 
     def setUp(self):
-        '''
+        """
             Create test records once to access them in
             every test method in the test class.
-        '''
+        """
         self.client = Client()
         self.home_url = reverse('home')
         self.search_url = reverse('search')
         self.login_url = reverse('login')
+        self.autocomplete_url = reverse('autocomplete')
         self.data_product = {
             'name': 'nutella',
             'description': 'product_description',
@@ -52,14 +53,14 @@ class TestViews(TestCase):
         self.user = User.objects.create_user(**self.user_data)
 
     def test_index(self):
-        ''' Test if homepage is well displayed'''
+        """ Test if homepage is well displayed"""
         response = self.client.get(self.home_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'store/index.html')
         self.assertContains(response, "Du gras, oui, mais de qualité !")
 
     def test_search_exist(self):
-        ''' Test search functionality with existing value.'''
+        """ Test search functionality with existing value."""
         name = 0
         # Create products
         for i in range(15):
@@ -82,7 +83,7 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, "store/search.html")
 
     def test_search_empty_page(self):
-        ''' Test search functionality with non existing value for user input'''
+        """ Test search functionality with non existing value for user input"""
         name = 0
         # Create products
         for i in range(15):
@@ -105,7 +106,7 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, "store/index.html")
 
     def test_product_categories(self):
-        ''' Test link bewteen a product and its categories. '''
+        """ Test link between a product and its categories. """
         product = Product.objects.create(**self.data_product)
         category = Category.objects.create(**self.data_category)
         # Add link between a product and a category
@@ -122,7 +123,7 @@ class TestViews(TestCase):
             self.assertEquals(response.status_code, 200)
 
     def test_listing_substitutes(self):
-        ''' Test the listing of substitutes in template. '''
+        """ Test the listing of substitutes in template. """
         product = Product.objects.create(**self.data_product)
         category = Category.objects.create(**self.data_category)
         substitute = Product.objects.get(id=product.id)
@@ -139,7 +140,7 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'store/listing_substitutes.html')
 
     def test_substitute_details(self):
-        ''' Test the substitutes details in template. '''
+        """ Test the substitutes details in template. """
         product = Product.objects.create(**self.data_product)
         substitute = Product.objects.create(**self.data_substitute)
         category = Category.objects.create(**self.data_category)
@@ -161,7 +162,7 @@ class TestViews(TestCase):
             self.assertEquals(response.status_code, 200)
 
     def test_save_product(self):
-        ''' Test the save as favorite functionality. '''
+        """ Test the save as favorite functionality. """
         # User has to be login
         self.client.login(
                                     username=self.login_data['username'],
@@ -189,7 +190,7 @@ class TestViews(TestCase):
         )
 
     def test_delete_substitute(self):
-        ''' Test the delete favorite functionality. '''
+        """ Test the delete favorite functionality. """
         # User has to be login
         self.client.login(
                                     username=self.login_data['username'],
@@ -198,7 +199,7 @@ class TestViews(TestCase):
         substitute = Product.objects.create(**self.data_product)
         substitute.users.add(self.user)
         self.assertEqual(User.products.through.objects.all().count(), 1)
-        # Remove the link of the user with the choosen product
+        # Remove the link of the user with the chosen product
         response = self.client.post(
                                     reverse(
                                             'favorite_delete',
@@ -212,8 +213,36 @@ class TestViews(TestCase):
         self.assertRedirects(response, '/account/saved_food/')
 
     def test_mention(self):
-        ''' Test if mention page is well displayed'''
+        """ Test if mention page is well displayed"""
         response = self.client.get(reverse('mention'))
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'store/mention.html')
         self.assertContains(response, "Mentions légales")
+
+    def test_autocomplete(self):
+        name = 0
+        # Create products
+        for i in range(4):
+            Product.objects.create(
+                                    name=f"Nutella{name}",
+                                    description="desc",
+                                    url="url",
+                                    nutrition_grade="nutri",
+                                    image="image"
+            )
+            name += 1
+        Product.objects.create(
+                                name=f"Brochette",
+                                description="desc",
+                                url="url",
+                                nutrition_grade="nutri",
+                                image="image"
+        )
+        user_input = "n"
+        check_first_letter = Product.objects.filter(name__istartswith=user_input)
+        response = self.client.get(
+            self.autocomplete_url,
+            data={'user_input': user_input}
+            )
+        self.assertEqual(check_first_letter.count(), 4)
+        self.assertTemplateUsed(response, "store/base.html")

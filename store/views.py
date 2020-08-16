@@ -11,13 +11,13 @@ logger = logging.getLogger('Pur Beurre')
 
 # Create your views here.
 def index(request):
-    ''' View that send user to homepage of the website. '''
+    """ View that send user to homepage of the website. """
     template = loader.get_template('store/index.html')
     return HttpResponse(template.render(request=request))
 
 
 def search(request):
-    ''' View that send associated results of user research. '''
+    """ View that send associated results of user research. """
     user_input_query = request.GET.get('user_input')
     query_set = Product.objects.all()
 
@@ -50,7 +50,7 @@ def search(request):
 
 
 def product_categories(request, product_id):
-    ''' View that send associated categories of products in search result. '''
+    """ View that send associated categories of products in search result. """
     product = Product.objects.get(pk=product_id)
     categories = product.categories.all()
     context = {
@@ -61,7 +61,7 @@ def product_categories(request, product_id):
 
 
 def listing_substitutes(request, product_id, category_id):
-    ''' View that send substitutes for product in the choosen category. '''
+    """ View that send substitutes for product in the chosen category. """
     product = Product.objects.get(pk=product_id)
     category = Category.objects.get(pk=category_id)
     # Find substitute with better nutriscore for product
@@ -80,7 +80,7 @@ def listing_substitutes(request, product_id, category_id):
 
 
 def substitute_details(request, substitute_name):
-    ''' View that send substitute details. '''
+    """ View that send substitute details. """
     substitute = Product.objects.get(name=substitute_name)
     shops = substitute.shops.all()
     context = {
@@ -92,7 +92,7 @@ def substitute_details(request, substitute_name):
 
 @login_required
 def save_product(request, substitute_id):
-    ''' View that allows a user to save a substitute as favorite. '''
+    """ View that allows a user to save a substitute as favorite. """
     substitute = Product.objects.get(id=substitute_id)
     user = request.user
     substitute.users.add(user)
@@ -102,10 +102,10 @@ def save_product(request, substitute_id):
 
 @login_required
 def delete_substitute(request, substitute_id):
-    '''
+    """
         View that allows a user to delete
         a substitute in saved_food template.
-    '''
+    """
     substitute = Product.objects.get(id=substitute_id)
     user = request.user
     substitute.users.remove(user)
@@ -114,15 +114,17 @@ def delete_substitute(request, substitute_id):
 
 
 def mention(request):
-    ''' View that render template. '''
+    """ View that render template. """
     return render(request, 'store/mention.html')
 
+
 def autocomplete(request):
-    """ """
+    """ View that allows dynamic researches. """
     if 'term' in request.GET:
-        query_set = Product.objects.filter(name__istartswith=request.GET.get('term'))
+        user_input = request.GET.get('term')
+        query_set = Product.objects.filter(name__istartswith=user_input)
         names = list()
         for product in query_set:
-            names.append(product.name)
+            names.append(product.name.title())
         return JsonResponse(names, safe=False)
-    return render(request, 'store/index.html', {'names' : names})
+    return render(request, 'store/index.html')

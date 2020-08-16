@@ -42,13 +42,41 @@ img#logo {
   height: 2rem;
 }
 
+#nav-bar-small-screen li form {
+  display: flex;
+}
+
+#input-btn-nav {
+  height: 1.5rem;
+  flex-direction: column;
+  margin-top: -0.4rem;
+  margin-right: 1rem;
+  margin-left: -16px;
+}
+
+#btn-search-nav {
+  margin-top: -6px;
+}
+
+button#btn-search-nav.btn {
+  height: inherit;
+  width: 12px;
+}
+
+#btn-search-icon {
+  height: 15px;
+  margin-left: -7px;
+  margin-bottom: 15px;
+}
+
 input#search.form-control {
   height: 1.5rem;
   width: 10rem;
   text-align: center;
   margin-top: -0.4rem;
-  margin-right: 1rem;
   background-color: #b6bfc7;
+  flex-direction: column;
+  margin-right: 16px;
 }
 
 #menu-food {
@@ -156,7 +184,8 @@ p#contact-text {
   text-align: center;
 }
 
-#contact {
+#contact-phone-div,
+#contact-email-div {
   text-align: center;
 }
 
@@ -275,7 +304,6 @@ h2.form-title {
 #signup-pass {
   display: inline-block;
   font: normal normal normal 14px/1 "Material-Design-Iconic-Font";
-  font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   font-size: 18px;

@@ -35,26 +35,30 @@
 
           <img src="{{ substitute.image }}" alt="{{ substitute.name }}" />
           <a href="/store/substitute_details/{{ substitute.name }}">
-            <br /><span id="prod-name">{{ substitute.name }}</span>
+            <br /><span id="prod-name">{{ substitute.name | capfirst }}</span>
           </a>
           {% if user.is_authenticated and user not in substitute.users.all %}
-
-          <form action="{% url 'favorite' substitute.id %}" method="POST">
-            {% csrf_token %}
-            <button class="save-button" name="button-save" type="submit">
-              <i id="save" class="far fa-save" aria-hidden="true"></i>
-              Sauvegarder
-            </button>
-          </form>
+          <div id="save-but">
+            <form data-id="button" action="{% url 'favorite' substitute.id %}" method="POST" class="add-button">
+              {% csrf_token %}
+              <button class="save-button" name="button-save" type="submit">
+                <i id="save" class="far fa-save" aria-hidden="true"></i>
+                Sauvegarder
+              </button>
+            </form>
+          </div>
           {% endif %}
           {% if user.is_authenticated and user in substitute.users.all %}
-          <form action="{% url 'favorite_delete' substitute.id %}" method="POST">
-            {% csrf_token %}
-            <button class="delete-button" name="button-save" type="submit">
-              <i id="save" class="far fa-save" aria-hidden="true"></i> Supprimer
-              des favoris
-            </button>
-          </form>
+          <div id="remove-but">
+            <form data-id="button" action="{% url 'favorite_delete' substitute.id %}" method="POST"
+              class="remove-button">
+              {% csrf_token %}
+              <button class="delete-button" name="button-save" type="submit">
+                <i id="save" class="far fa-save" aria-hidden="true"></i> Supprimer
+                des favoris
+              </button>
+            </form>
+          </div>
           {% endif %}
         </div>
       </div>

@@ -2,204 +2,114 @@
 {% load static %}
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Pur Beurre</title>
-    <!-- Font Awesome icons (free version)-->
-    <script
-      src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Google fonts-->
-    <link
-      href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <!-- Third party plugin CSS-->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
-      rel="stylesheet"
-    />
 
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'store/css/styles.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'store/css/main.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/js"
-      href="{% static 'store/js/main.js' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/js"
-      href="{% static 'store/js/autocomplete.js' %}"
-    />
-  </head>
-  <body id="page-top">
-    <!-- Navigation-->
-    <nav
-      class="navbar navbar-expand-lg navbar-light fixed-top py-3"
-      id="mainNav"
-    >
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/#page-top">
-          <img
-            id="logo"
-            src="{% static 'store/assets/img/portfolio/logo/logo_pur_beurre.png' %}"
-            alt="Logo"
-          />
-          Pur Beurre </a
-        ><button
-          class="navbar-toggler navbar-toggler-right"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="Trouvez des substituts aux produits que vous consommez au quotidien." />
+  <meta name="author" content="" />
+  <title>Pur Beurre</title>
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
+    rel="stylesheet" type="text/css" />
+  <!-- Third party plugin CSS-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
 
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul id="nav-bar-small-screen" class="navbar-nav ml-auto my-2 my-lg-0">
-            <li class="nav-item">
-              <a class="" href="#research"></a>
-              <form method="GET" action="{% url 'search' %}">
-                <!-- <input
-                  type="hidden"
-                  id="Url"
-                  data-url="{% url 'autocomplete' %}"
-                /> -->
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link rel="stylesheet" type="text/css" href="{% static 'store/css/styles.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'store/css/main.css' %}" />
+  <link rel="stylesheet" type="text/js" href="{% static 'store/js/main.js' %}" />
+  <link rel="stylesheet" type="text/js" href="{% static 'store/js/autocomplete.js' %}" />
+  <link rel="icon" type="image/png" href="{% static 'store/assets/img/portfolio/logo/logo_pur_beurre.png' %}">
+</head>
 
-                <input
-                  type="search"
-                  name="user_input"
-                  class="form-control"
-                  id="search"
-                  placeholder="Chercher"
-                />
-              </form>
-            </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="account" href="{% url 'my_account' %}">
-                <i
-                  id="menu-account"
-                  class="fa fa-user"
-                  aria-hidden="true"
-                  title="Mon compte"
-                ></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="aliment" href="{% url 'saved_food' %}">
-                <i
-                  id="menu-food"
-                  class="fas fa-carrot"
-                  aria-hidden="true"
-                  title="Mes aliments"
-                ></i>
-              </a>
-            </li>
+<body id="page-top">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="/#page-top">
+        <img id="logo" src="{% static 'store/assets/img/portfolio/logo/logo_pur_beurre.png' %}" alt="Logo" />
+        Pur Beurre </a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-            <li class="nav-item">
-              <a class="deconnection" href="{% url 'logout' %}">
-                <i
-                  id="menu-deconnect"
-                  class="fas fa-sign-out-alt"
-                  aria-hidden="true"
-                  title="Déconnexion"
-                ></i>
-              </a>
-            </li>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul id="nav-bar-small-screen" class="navbar-nav ml-auto my-2 my-lg-0">
+          <li class="nav-item">
+            <a class="" href="#research"></a>
+            <form method="GET" action="{% url 'search' %}">
+              <input data-url="{% url 'autocomplete' %}" type="search" name="user_input" class="form-control"
+                id="search" placeholder="Chercher" />
+              <span class="input-group-btn" id="input-btn-nav">
+                <button id="btn-search-nav" class="btn" type="submit">
+                  <i id="btn-search-icon" class="fa fa-search"></i></button>
+              </span>
+            </form>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="account" href="{% url 'my_account' %}">
+              <i id="menu-account" class="fa fa-user" aria-hidden="true" title="Mon compte"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="aliment" href="{% url 'saved_food' %}">
+              <i id="menu-food" class="fas fa-carrot" aria-hidden="true" title="Mes aliments"></i>
+            </a>
+          </li>
 
-            {% else %}
-            <li class="nav-item">
-              <div class="dropdown">
-                <button
-                  id="menu-account"
-                  class="fa fa-user"
-                  aria-hidden="true"
-                  title="Authentification"
-                  type="button"
-                  data-toggle="dropdown"
-                ></button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{% url 'sign_up' %}"
-                    >S'inscrire</a
-                  >
-                  <a class="dropdown-item" href="{% url 'login' %}"
-                    >Se connecter</a
-                  >
-                </div>
+          <li class="nav-item">
+            <a class="deconnection" href="{% url 'logout' %}">
+              <i id="menu-deconnect" class="fas fa-sign-out-alt" aria-hidden="true" title="Déconnexion"></i>
+            </a>
+          </li>
+
+          {% else %}
+          <li class="nav-item">
+            <div class="dropdown">
+              <button id="menu-account" class="fa fa-user" aria-hidden="true" title="Authentification" type="button"
+                data-toggle="dropdown"></button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'sign_up' %}">S'inscrire</a>
+                <a class="dropdown-item" href="{% url 'login' %}">Se connecter</a>
               </div>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
+            </div>
+          </li>
+          {% endif %}
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    {% block header %} {% endblock %} {% block content %} {% endblock %}
+  {% block header %} {% endblock %} {% block content %} {% endblock %}
 
-    <!-- Footer-->
-    <footer>
-      <div id="footer-section" class="container">
-        <div class="small text-left text-muted">
-          <a href="{% url 'mention' %}">Mentions légales</a>
-        </div>
-        <div class="small text-right text-muted">
-          <a class="contact-color" href="/#services">Contact</a>
-        </div>
+  <!-- Footer-->
+  <footer>
+    <div id="footer-section" class="container">
+      <div class="small text-left text-muted">
+        <a href="{% url 'mention' %}">Mentions légales</a>
       </div>
-    </footer>
+      <div class="small text-right text-muted">
+        <a class="contact-color" href="/#services">Contact</a>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Bootstrap core JS-->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <!-- Third party plugin JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-    <!-- Core theme JS-->
-    <script
-      type="text/javascript"
-      src="{% static 'store/js/scripts.js' %}"
-    ></script>
-    <script
-      type="text/javascript"
-      src="{% static 'store/js/main.js' %}"
-    ></script>
-    <script
-      type="text/javascript"
-      src="{% static 'store/js/autocomplete.js' %}"
-    ></script>
-    <script>
-      $(document).ready(function () {
-        $("#search, #product").autocomplete({
-          source: "{% url 'autocomplete' %}",
-        });
-      });
-    </script>
-  </body>
+  <!-- Bootstrap core JS-->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <!-- Third party plugin JS-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+  <!-- Core theme JS-->
+  <script type="text/javascript" src="{% static 'store/js/scripts.js' %}"></script>
+  <script type="text/javascript" src="{% static 'store/js/main.js' %}"></script>
+</body>
+
 </html>

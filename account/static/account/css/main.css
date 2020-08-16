@@ -505,3 +505,39 @@ nav#mainNav.navbar.navbar-expand-lg.navbar-light.fixed-top.py-3 {
 .ui-autocomplete::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.2);
 }
+
+#nav-bar-small-screen li form {
+  display: flex;
+}
+
+#input-btn-nav {
+  height: 1.5rem;
+  flex-direction: column;
+  margin-top: -0.4rem;
+  margin-right: 1rem;
+  margin-left: -16px;
+}
+
+#btn-search-nav {
+  margin-top: -6px;
+}
+
+button#btn-search-nav.btn {
+  height: inherit;
+  width: 12px;
+}
+
+#btn-search-icon {
+  height: 15px;
+  margin-left: -7px;
+  margin-bottom: 15px;
+}
+
+input#search.form-control {
+  height: 1.5rem;
+  width: 10rem;
+  text-align: center;
+  margin-top: -0.4rem;
+  background-color: #b6bfc7;
+  flex-direction: column;
+}
