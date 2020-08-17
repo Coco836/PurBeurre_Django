@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,9 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="Trouvez des substituts aux produits que vous consommez au quotidien." />
   <meta name="author" content="" />
+  <meta property="og:title" content="Pur Beurre" />
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src http://*; child-src 'none';"> -->
   <title>Pur Beurre</title>
   <!-- Font Awesome icons (free version)-->
-  <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+  <script src="{% static 'store/js/all_3bb8bfb51cc0cec51afefa34c1f3154a.js' %}" crossorigin="anonymous"></script>
   <!-- Google fonts-->
   <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
@@ -16,7 +20,6 @@
   <!-- Third party plugin CSS-->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
 
-  {% load static %}
   <!-- Core theme CSS (includes Bootstrap)-->
   <link rel="stylesheet" type="text/css" href="{% static 'account/css/styles.css' %}" />
   <link rel="stylesheet" type="text/css" href="{% static 'account/css/main.css' %}" />
@@ -40,8 +43,10 @@
           <li class="nav-item">
             <a class="" href="#research"></a>
             <form method="GET" action="{% url 'search' %}">
-              <input data-url="{% url 'autocomplete' %}" type="search" name="user_input" class="form-control"
-                id="search" placeholder="Chercher" />
+              <label for="search">
+                <input data-url="{% url 'autocomplete' %}" type="search" name="user_input" class="form-control"
+                  id="search" placeholder="Chercher" />
+              </label>
               <span class="input-group-btn" id="input-btn-nav">
                 <button id="btn-search-nav" class="btn" type="submit">
                   <i id="btn-search-icon" class="fa fa-search"></i></button>
@@ -97,12 +102,12 @@
     </div>
   </footer>
   <!-- Bootstrap core JS-->
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'store/js/jquery-1.12.4_1450e130132c76a48ee346735ab70454.js' %}"></script>
+  <script src="{% static 'store/js/jquery-ui_f4f5bf63c99e760f7053ac9b9e1327ab.js' %}"></script>
+  <script src="{% static 'store/js/bootstrap.bundle.min_b95602f6913868a96a479b79cf4d872e.js' %}"></script>
   <!-- Third party plugin JS-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+  <script src="{% static 'store/js/jquery.magnific-popup.min_ac80f1384f7e7c0f1f0c93f4722e973a.js' %}"></script>
   <!-- Core theme JS-->
   <script src="{% static 'store/js/scripts.js' %}"></script>
   <script src="{% static 'store/js/main.js' %}"></script>
