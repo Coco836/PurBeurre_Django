@@ -2,7 +2,9 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.firefox.webdriver import WebDriver
 from django.urls import reverse
-from store.models import Product, Category
+from django.apps import apps
+Category = apps.get_model('store', 'Category')
+Product = apps.get_model('store', 'Product')
 
 
 # Create your tests here.

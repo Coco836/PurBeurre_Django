@@ -224,7 +224,7 @@ class TestViews(TestCase):
         # Create products
         for i in range(4):
             Product.objects.create(
-                                    name=f"Nutella{name}",
+                                    name=f"Nutella {name}",
                                     description="desc",
                                     url="url",
                                     nutrition_grade="nutri",
