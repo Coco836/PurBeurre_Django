@@ -232,14 +232,16 @@ class TestViews(TestCase):
             )
             name += 1
         Product.objects.create(
-                                name=f"Brochette",
+                                name="Brochette",
                                 description="desc",
                                 url="url",
                                 nutrition_grade="nutri",
                                 image="image"
         )
         user_input = "n"
-        check_first_letter = Product.objects.filter(name__istartswith=user_input)
+        check_first_letter = Product.objects.filter(
+                                                name__istartswith=user_input
+                                                )
         response = self.client.get(
             self.autocomplete_url,
             data={'user_input': user_input}

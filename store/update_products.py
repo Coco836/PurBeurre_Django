@@ -1,9 +1,9 @@
 import logging
 from api import OpenFoodFactsApi
 from django.db import IntegrityError
+from django.apps import apps
 import django
 django.setup()
-from django.apps import apps
 Category = apps.get_model('store', 'Category')
 Product = apps.get_model('store', 'Product')
 logger = logging.getLogger('Pur Beurre')
@@ -47,7 +47,10 @@ class Update:
                             except IntegrityError as error:
                                 logger.warning(error)
                         # Check if the nutriscore of the product has changed
-                        if product.nutrition_grade is not product_db.nutrition_grade:
+                        if (
+                            product.nutrition_grade
+                            is not product_db.nutrition_grade
+                        ):
                             # Try updating the nutriscore of the product
                             try:
                                 Product.objects.filter(url=product.url).update(

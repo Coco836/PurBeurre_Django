@@ -1,6 +1,4 @@
 # Import
-import django
-django.setup()
 from django.test import TestCase, Client
 from django.urls import reverse
 from store.models import Product

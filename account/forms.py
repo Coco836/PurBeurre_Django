@@ -34,14 +34,15 @@ class UserForm(forms.Form):
 
     def password_validator(password):
         min_length = 8
-        if len(password) < min_length or \
-            not re.findall('[A-Z]', password) \
-            and not re.findall('[a-z]', password):
+        if (
+            len(password) < min_length or
+            not re.findall('[A-Z]', password)
+            and not re.findall('[a-z]', password)
+        ):
             raise ValidationError(
                 "Le mot de passe doit contenir au minimum : "
                 "8 caractères et ne peut contenir uniquement des chiffres !"
             )
-
 
     # Creation of the different fields for User table
     username = forms.CharField(
@@ -112,7 +113,6 @@ class UserForm(forms.Form):
                                             'placeholder': 'Mot de passe'
                                         }
             ),
-        validators=[password_validator],
-        required=True
-
+            validators=[password_validator],
+            required=True
     )
