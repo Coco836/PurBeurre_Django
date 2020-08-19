@@ -157,8 +157,17 @@ class TestViews(TestCase):
                             username=self.login_data['username'],
                             password=self.login_data['password']
         )
+
+        for user in User.objects.all():
+            old_passwd = user.password
+
         self.client.get(self.change_pwd_url)
         response = self.client.post(self.change_pwd_url, self.data_pwd_change)
+
+        for user in User.objects.all():
+            new_passwd = user.password
+           
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'registration/change_password.html')
         self.assertContains(response, 'Votre mot de passe a bien été changé')
+        self.assertNotEqual(old_passwd, new_passwd)
